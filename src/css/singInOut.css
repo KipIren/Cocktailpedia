@@ -1,0 +1,132 @@
+#sing-in{
+    background-image: url("../imgs/sing-in-background.jpg");
+    background-size: cover;
+    background-position: top center;
+    position: relative;
+    z-index: 1;
+}
+#sing-in::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.3;
+    z-index: -1;
+}
+#sing-in .sing-in{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 50px;
+    justify-content: center;
+    text-align: center;
+}
+.sing-in h1{
+    display: block;
+    color: white;
+    font-size: 4rem;
+    position: relative;
+    margin: 40px 0;
+}
+.sing-in p{
+    display: block;
+    color: white;
+    font-size: 2rem;
+    position: relative;
+    margin: 10px 0;
+}
+.social-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 55px;
+}
+.google-login{
+    width: 100%;
+    margin-bottom: 10px;
+}
+.social{
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    display: inline-flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.54);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
+    padding: 0px;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: Roboto, sans-serif;
+}
+.social:hover{
+    cursor: pointer;
+    opacity: 0.9;
+}
+.icon-singin{
+    transition: all 0.4s;
+    margin: 5px 20px 5px 5px;
+    color: #4267b2;
+}
+.icon-singin-google{
+    transition: all 0.4s;
+    margin: 5px 20px 5px 5px;
+    color: rgb(234, 67, 53);
+}
+.facebook-btn:first-child{
+    margin-right: 30px;
+}
+.overlay{
+    background: rgb(2,102,112);
+    background: radial-gradient(circle, rgba(2,102,112,0.9549569095216212) 0%, rgba(69,140,131,0.9073378619025735) 41%, rgba(254,249,199,0.9213434641434699) 100%);
+    border-radius: 25px;
+    padding: 40px 20px;
+    margin-top: 30px;
+    transition: all 0.6s;
+    display: flex;
+    flex-direction: column;
+    min-height: 550px;
+}
+@media only screen and (max-device-width: 480px){
+    .social-container{
+        margin: 0;
+    }
+    .overlay{
+        margin-top: 60px;
+    }
+    .sing-in h1{
+        font-size: 2.7rem;
+        margin: 30px 0;
+    }
+    .sing-in p{
+        font-size: 1.6rem;
+        text-align: center;
+    }
+}
+@media only screen and (max-device-width: 1100px){
+    .overlay{
+        margin-top: 60px;
+        min-height: 500px;
+    }
+}
+@media only screen and (min-device-width: 2000px){
+    .overlay{
+        min-height: 1050px;
+        padding: 90px 20px;
+        margin: 70px 0;
+    }
+    .sing-in h1{
+        font-size: 7rem;
+        margin: 80px 0;
+    }
+    .sing-in p{
+        font-size: 5rem;
+    }
+    .social{
+        font-size: 3rem !important;
+        padding: 10px !important;
+    }
+}

@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+import SearchCocktails from "./components/SearchCocktails";
+import SingInOut from "./components/SingInOut";
+import Favorites from "./components/Favorites";
+import {UserProvider} from "./context/UserContext";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        <Router>
+            <UserProvider>
+                <Navbar/>
+                <Switch>
+                    <Route exact path='/'> <Home/> </Route>
+                    <Route path='/search'> <SearchCocktails/> </Route>
+                    <Route path='/favorites'> <Favorites/> </Route>
+                    <Route path='/sing-in-out'> <SingInOut/> </Route>
+                </Switch>
+            </UserProvider>
+        </Router>
   );
 }
-
 export default App;
+
+
+//TODO
+//1.problems with endless scroll
