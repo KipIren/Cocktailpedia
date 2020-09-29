@@ -14,7 +14,7 @@ import {UserProvider} from "./context/UserContext";
 
 const App = () => {
   return (
-        <Router>
+        <Router basename="/cocktails">
             <UserProvider>
                 <Navbar/>
                 <Switch>
