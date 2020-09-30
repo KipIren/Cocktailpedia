@@ -14,10 +14,7 @@ const Home = () => {
     const [cocktails, setCocktails] = useState([]);
     const [totalCount, setTotalCount] = useState(0);
     const [number, setNumber] = useState(1);
-    const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [isBottom, setBottom] = useState(false);
-
 
     useEffect(() => {
         fetch(`${baseUrl}/api/allCocktails`, {
@@ -29,24 +26,22 @@ const Home = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                setIsLoaded(true);
+                setTimeout(function(){ setIsLoaded(false); }, 3200);
+                setTimeout(function(){ setIsLoaded(true); }, 5500);
                 setCocktails((currentCocktails)=>[...currentCocktails, ...data.data]);
                 setTotalCount(data.totalCount);
             },(error) => {
                 setIsLoaded(true);
-                setError(error);
+                console.log(error);
             });
-        setBottom(false);
     }, [number]);
 
 
     const onScroll = useCallback(()=> {
         if ((window.innerHeight + window.scrollY + 10) >= document.body.offsetHeight) {
-            setBottom(true);
             setNumber(number => number+1);
         }
-
-    },[setBottom, setNumber]);
+    },[setNumber]);
 
     const onScrollDebounced = useDebouncedCallback(onScroll, 200);
     useEffect(() => {
@@ -73,7 +68,7 @@ const Home = () => {
                 <section id='allCocktails' className='container'>
                     <div className='allCocktails'>
                         <h1 className='all-cocktails-title'><span>A</span>ll <span>c</span>ocktails</h1>
-                        {cocktails !== undefined && totalCount > 0 && isLoaded &&
+                        {totalCount > 0 &&
                             <><ListCocktailCards cocktails={cocktails}/>
                                 <BackToTop
                                     showOnScrollUp
@@ -83,18 +78,12 @@ const Home = () => {
                                 >
                                     <FontAwesomeIcon icon={faChevronCircleUp} color='#026670' size={"lg"}/>
                                 </BackToTop>
+                                {!isLoaded &&
+                                <div className='spin'>
+                                    <FontAwesomeIcon icon={faSpinner} spin size={"9x"} />
+                                </div>
+                                }
                             </>
-
-                        }
-                        {!isLoaded &&
-                        <div className='spin'>
-                            <FontAwesomeIcon icon={faSpinner} spin size={"9x"} />
-                        </div>
-                        }
-                        {isBottom &&
-                        <div className='spin'>
-                            <FontAwesomeIcon icon={faSpinner} spin size={"9x"} />
-                        </div>
                         }
                     </div>
                 </section>
